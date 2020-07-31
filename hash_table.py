@@ -11,7 +11,7 @@ class HashTable:
     # but having this would allow the program to be used with package ids that
     # are larger than 40
     def get_index(self, parcel):
-        index = parcel.parcel_id % 40
+        index = int(parcel.parcel_id) % 40
         return index
 
     def is_duplicate(self, index):
@@ -37,3 +37,14 @@ class HashTable:
                 if self.table[index] is None:
                     self.table[index] = parcel
 
+    def search_parcel(self, key):
+        searched = None
+        for parcel in self.table:
+            if parcel is not None:
+                if parcel.parcel_id is key:
+                    searched = parcel
+        return searched
+
+    def print_table(self):
+        for parcel in self.table:
+            print(parcel)

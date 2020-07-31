@@ -10,7 +10,8 @@ class Parcel:
         self.deadline = deadline
         self.mass = mass
         self.special_inst = special_inst
+        self.delivered = False
 
     # Allows printing of all class object attributes
     def __str__(self):
-        return  str(self.__dict__)
+        return str(self.__dict__)
