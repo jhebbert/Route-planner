@@ -3,9 +3,9 @@ from parcel import Parcel
 from hash_table import HashTable
 from truck import Truck
 from location import Location
+from controller import Controller
 
 test_table = HashTable()
-test_truck = Truck()
 locations = []
 
 with open('distance-table.csv') as csvfile:
@@ -33,8 +33,6 @@ with open('distance-table.csv') as csvfile:
             loc_A.distance_dic[loc_B.address] = distance
             loc_B.distance_dic[loc_A.address] = distance
 
-for location in locations:
-    print(location.address, ': ', location.distance_dic)
 
 with open('parcels.csv') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
@@ -52,5 +50,16 @@ with open('parcels.csv') as csvfile:
         parcel = Parcel(parcel_id, address, city, state, zip_code, deadline, mass, special)
         test_table.add(parcel)
 
-test_truck.add_parcel(test_table.search_parcel(5))
+WGUPS_controller = Controller()
+test_truck = Truck(locations[0], locations)
+WGUPS_controller.add_truck(test_truck)
+test_truck.add_parcel(test_table.table[0])
+test_truck.add_parcel(test_table.table[1])
+test_truck.add_parcel(test_table.table[2])
+
+WGUPS_controller.run()
+
+for parcel in test_table.table:
+    print(parcel.delivered)
+
 
