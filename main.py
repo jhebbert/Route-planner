@@ -5,7 +5,7 @@ from truck import Truck
 from location import Location
 from controller import Controller
 
-test_table = HashTable()
+package_table = HashTable()
 locations = []
 
 with open('distance-table.csv') as csvfile:
@@ -48,18 +48,79 @@ with open('parcels.csv') as csvfile:
         special = row[7]
 
         parcel = Parcel(parcel_id, address, city, state, zip_code, deadline, mass, special)
-        test_table.add(parcel)
+        package_table.add(parcel)
+
+
+package_table.table[9].address = '410 S State St'
 
 WGUPS_controller = Controller()
-test_truck = Truck(locations[0], locations)
-WGUPS_controller.add_truck(test_truck)
-test_truck.add_parcel(test_table.table[0])
-test_truck.add_parcel(test_table.table[1])
-test_truck.add_parcel(test_table.table[2])
+truck_1 = Truck(locations[0], locations, 8, 0)
+truck_2 = Truck(locations[0], locations, 8, 0)
+WGUPS_controller.add_truck(truck_1)
+WGUPS_controller.add_truck(truck_2)
+truck_2.add_parcel(package_table.search_parcel(15))
+truck_2.add_parcel(package_table.search_parcel(16))
+truck_2.add_parcel(package_table.search_parcel(34))
+truck_2.add_parcel(package_table.search_parcel(20))
+truck_2.add_parcel(package_table.search_parcel(21))
+truck_2.add_parcel(package_table.search_parcel(1))
+truck_2.add_parcel(package_table.search_parcel(13))
+truck_2.add_parcel(package_table.search_parcel(39))
+truck_2.add_parcel(package_table.search_parcel(3))
+truck_2.add_parcel(package_table.search_parcel(10))
+truck_2.add_parcel(package_table.search_parcel(24))
+truck_2.add_parcel(package_table.search_parcel(36))
+truck_2.add_parcel(package_table.search_parcel(35))
+truck_2.add_parcel(package_table.search_parcel(14))
+truck_2.add_parcel(package_table.search_parcel(19))
+truck_2.add_parcel(package_table.search_parcel(27))
+
+truck_1.add_parcel(package_table.search_parcel(29))
+truck_1.add_parcel(package_table.search_parcel(37))
+truck_1.add_parcel(package_table.search_parcel(40))
+truck_1.add_parcel(package_table.search_parcel(8))
+truck_1.add_parcel(package_table.search_parcel(30))
+truck_1.add_parcel(package_table.search_parcel(7))
+truck_1.add_parcel(package_table.search_parcel(38))
+truck_1.add_parcel(package_table.search_parcel(5))
+truck_1.add_parcel(package_table.search_parcel(4))
+# # truck_1.add_parcel(package_table.search_parcel())
+# # truck_1.add_parcel(package_table.search_parcel())
+# # truck_1.add_parcel(package_table.search_parcel())
+# # truck_1.add_parcel(package_table.search_parcel())
+# truck_1.add_parcel(package_table.search_parcel())
+# truck_1.add_parcel(package_table.search_parcel())
+
 
 WGUPS_controller.run()
 
-for parcel in test_table.table:
-    print(parcel.delivered)
+
+truck_2.add_parcel(package_table.search_parcel(9))
+truck_2.add_parcel(package_table.search_parcel(2))
+truck_2.add_parcel(package_table.search_parcel(33))
+truck_2.add_parcel(package_table.search_parcel(28))
+# truck_2.add_parcel(package_table.search_parcel())
+# truck_2.add_parcel(package_table.search_parcel())
+# truck_2.add_parcel(package_table.search_parcel())
+# truck_2.add_parcel(package_table.search_parcel())
+
+truck_1.add_parcel(package_table.search_parcel(6))
+truck_1.add_parcel(package_table.search_parcel(25))
+truck_1.add_parcel(package_table.search_parcel(26))
+truck_1.add_parcel(package_table.search_parcel(31))
+truck_1.add_parcel(package_table.search_parcel(32))
+truck_1.add_parcel(package_table.search_parcel(11))
+truck_1.add_parcel(package_table.search_parcel(12))
+truck_1.add_parcel(package_table.search_parcel(17))
+truck_1.add_parcel(package_table.search_parcel(18))
+truck_1.add_parcel(package_table.search_parcel(23))
+truck_1.add_parcel(package_table.search_parcel(22))
+
+WGUPS_controller.run()
+
+for package in package_table.table:
+    print(package.parcel_id, ':', package.is_delivered)
+print(WGUPS_controller.calculate_miles())
+
 
 
