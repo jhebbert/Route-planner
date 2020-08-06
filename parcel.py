@@ -25,6 +25,7 @@ class Parcel:
         self.delivery_time = None
         self.load_time = None
 
+    # Prints the details for each package in the passed in table
     def print_status_at_time(self, time, table):
         parcel_copy = copy.copy(self)
         if parcel_copy.load_time > time:

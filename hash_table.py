@@ -1,4 +1,5 @@
-from parcel import Parcel
+# This class builds a hash table for storing package information
+
 
 class HashTable:
 
@@ -14,6 +15,8 @@ class HashTable:
         index = int(parcel.parcel_id) % 40
         return index
 
+    # Checks to see if there is a package in the table with the
+    # same ID as the passed in index.
     def is_duplicate(self, index):
         found = False
         for parcel in self.table:
