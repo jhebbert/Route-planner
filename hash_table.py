@@ -24,7 +24,7 @@ class HashTable:
         return found
 
     # Add parcel to table and handle collisions
-    def add(self, parcel):
+    def insert(self, parcel):
         index = self.get_index(parcel)
         if not self.is_duplicate(parcel.parcel_id):
             if self.table[index] is None:
@@ -37,6 +37,8 @@ class HashTable:
                 if self.table[index] is None:
                     self.table[index] = parcel
 
+    # lookup function: returns parcel object with the
+    # passed in key
     def search_parcel(self, key):
         searched = None
         for parcel in self.table:
